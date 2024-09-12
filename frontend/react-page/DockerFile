@@ -1,0 +1,21 @@
+# Stage 1: Build the React app
+FROM node:20.5.0 AS build
+
+WORKDIR /react-page
+
+# Copy package.json and package-lock.json from the current directory
+COPY package.json package-lock.json ./
+RUN npm install
+
+# Copy the rest of the React project and build the app
+COPY . ./
+RUN npm run build
+
+# Stage 2: Serve the app using nginx
+FROM nginx:alpine
+
+# Copy the build artifacts from the previous stage
+COPY --from=dist /react-page/dist /usr/share/nginx/html
+
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]

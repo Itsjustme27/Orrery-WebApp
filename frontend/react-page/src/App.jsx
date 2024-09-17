@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react';
-import Three from './Three';
+import Earth from './Planets/Earth';
 
 
 export default function App() {
@@ -11,7 +11,7 @@ export default function App() {
     });
     return(
         <>
-            <Three />
+            <Earth />
         </>
     )
 

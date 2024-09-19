@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import Earth from './Planets/Earth';
+import Sun from './Planets/Sun';
 
 
 export default function App() {
@@ -11,7 +12,7 @@ export default function App() {
     });
     return(
         <>
-            <Earth />
+            <Sun />
         </>
     )
 

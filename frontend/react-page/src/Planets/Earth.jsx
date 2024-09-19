@@ -4,7 +4,7 @@ import getStarField from '../Star/getStarField';
 
 
 
-export default function Three() {
+export default function Earth() {
     const width = window.innerWidth;
     const height = window.innerHeight;
 

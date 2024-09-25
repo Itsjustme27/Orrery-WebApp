@@ -12,7 +12,7 @@ export default function getStarField() {
   const starCount = 20000;  // Number of stars
   const starVertices = [];
 
-  // Randomly position each star in 3D space
+  // Randomly positioning each star in 3D space
   for (let i = 0; i < starCount; i++) {
     const x = THREE.MathUtils.randFloatSpread(2000);  // Random position in X
     const y = THREE.MathUtils.randFloatSpread(2000);  // Random position in Y

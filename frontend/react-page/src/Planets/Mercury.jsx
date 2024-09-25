@@ -4,7 +4,7 @@ import getStarField from '../Star/getStarField';
 
 
 
-export default function Earth() {
+export default function Mercury() {
     const width = window.innerWidth;
     const height = window.innerHeight;
 
@@ -27,9 +27,9 @@ export default function Earth() {
     
     const scene = new THREE.Scene();
 
-    const earthGroup = new THREE.Group();
-    earthGroup.rotation.z = -23.4 * Math.PI / 180;
-    scene.add(earthGroup);
+    const mercuryGroup = new THREE.Group();
+    mercuryGroup.rotation.z = 0.034 * Math.PI / 180;
+    scene.add(mercuryGroup);
     
     const detail = 12;
     const starField = getStarField();       
@@ -42,53 +42,36 @@ export default function Earth() {
         // color: 0xccff,
         // flatShading: true
 
-        map: loader.load("./src/assets/earthmap1k.jpg")
+        map: loader.load("./src/assets/mercurymap.jpg"),
+        roughness: 0.5,
+        metalness: 0.1
     });
+
+    // Ambient light for base illumination
+    const ambientLight = new THREE.AmbientLight(0x404040, 1);
+    scene.add(ambientLight);
 
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
     controls.dampingFactor = 0.03;
 
-    const earthMesh = new THREE.Mesh(geometry, material);
-    scene.add(earthMesh);
+    const mercuryMesh = new THREE.Mesh(geometry, material);
+    mercuryMesh.scale.set(0.1, 0.1, 0.1); 
+    scene.add(mercuryMesh);
 
     const wireMat = new THREE.MeshBasicMaterial({
         color: 0xffffff,
         wireframe: true
     });
 
-    const lightMat = new THREE.MeshBasicMaterial({
-        // color: 0xffffff,
-        // transparent: true,
-        // opacity: 0.6,
-        map: loader.load('./src/assets/earthlights1k.jpg'),
-        blending: THREE.AdditiveBlending
-    });
-    const lightMesh = new THREE.Mesh(geometry, lightMat);
-    scene.add(lightMesh);
 
-    // const cloudMat = new THREE.MeshBasicMaterial({
-    //     map: loader.load('./src/assets/earthcloudmap.jpg'),
-    //     blending: THREE.AdditiveBlending
- 
-    // });
-    // const cloudMesh = new THREE.Mesh(geometry, cloudMat);
-    // scene.add(cloudMesh);
-
-    // const wireMesh =  new THREE.Mesh(geometry, wireMat);
-    // earthMesh.add(wireMesh);
-
-    // const hemiLight = new THREE.HemisphereLight(0xffffff, 0x000000);
-    // scene.add(hemiLight);
-
-    const sunLight = new THREE.DirectionalLight(0xffffff);
-    sunLight.position.set(-2, -0.5, 1.5);
+    const sunLight = new THREE.DirectionalLight(0xffffff, 1);
+    sunLight.position.set(10, 10, 10);
     scene.add(sunLight);
 
   function animate() {
         requestAnimationFrame(animate);
-        earthMesh.rotation.y += 0.002;
-        lightMesh.rotation.y += 0.002;
+        mercuryMesh.rotation.y += 0.002;
         // cloudMesh.rotation.y += 0.002;
         renderer.render(scene, camera);
     }

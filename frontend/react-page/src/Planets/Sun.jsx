@@ -4,7 +4,7 @@ import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
 import getStarField from '../Star/getStarField';
-
+import Earth from './Earth';
 
 
 export default function Sun() {
@@ -38,7 +38,7 @@ export default function Sun() {
     scene.add(getStarField());
 
     const loader = new THREE.TextureLoader();
-    const geometry = new THREE.IcosahedronGeometry(1, detail);
+    const geometry = new THREE.SphereGeometry(1, detail);
     const material = new THREE.MeshStandardMaterial({
         
         // color: 0xccff,
@@ -56,6 +56,8 @@ export default function Sun() {
     const sunMesh = new THREE.Mesh(geometry, material);
     sunMesh.scale.set(2,2,2);   // Setting it's size to be bigger than other planets
     scene.add(sunMesh);
+    sunMesh.add(Earth);
+    
 
     const wireMat = new THREE.MeshBasicMaterial({
         color: 0xffffff,
@@ -93,6 +95,7 @@ export default function Sun() {
         controls.update();
         composer.render();
     }
+
 
     animate();
 }

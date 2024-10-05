@@ -56,7 +56,7 @@ export default function Sun() {
     const sunMesh = new THREE.Mesh(geometry, material);
     sunMesh.scale.set(2,2,2);   // Setting it's size to be bigger than other planets
     scene.add(sunMesh);
-    sunMesh.add(Earth);
+
     
 
     const wireMat = new THREE.MeshBasicMaterial({

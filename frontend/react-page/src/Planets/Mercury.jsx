@@ -3,7 +3,6 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import getStarField from '../Star/getStarField';
 
 
-
 export default function Mercury() {
     const width = window.innerWidth;
     const height = window.innerHeight;

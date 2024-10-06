@@ -1,20 +1,15 @@
-from datetime import datetime
-from flask import Flask, jsonify, render_template
+import os
+from dotenv import load_dotenv
+from flask import Flask, jsonify
 from flask_cors import CORS
-
-import numpy as np
-from scipy.constants import G
+import requests
 
 app = Flask(__name__)
 CORS(app)
+load_dotenv()
+api_key = os.getenv('NASA_API_KEY')
 
-@app.route('/')
-def func():
-    return "Hello world"
+
 
 if __name__ == '__main__':
     app.run(debug=True)
-
-@app.route('/earth')
-def earth_func():
-    return render_template("index.html")
